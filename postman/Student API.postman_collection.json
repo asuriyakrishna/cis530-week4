@@ -1,0 +1,86 @@
+{
+	"info": {
+		"name": "Student API",
+		"description": "CRUD requests for the Spring Boot Student REST API.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080"
+		},
+		{
+			"key": "studentId",
+			"value": ""
+		}
+	],
+	"item": [
+		{
+			"name": "Create Student",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('created', function () { pm.response.to.have.status(201); });",
+							"pm.collectionVariables.set('studentId', pm.response.json().id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [{ "key": "Content-Type", "value": "application/json" }],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"firstName\": \"Ada\",\n  \"lastName\": \"Lovelace\",\n  \"email\": \"ada.{{$timestamp}}@example.com\"\n}",
+					"options": { "raw": { "language": "json" } }
+				},
+				"url": "{{baseUrl}}/api/students",
+				"description": "Create a student and save its ID for the other requests."
+			}
+		},
+		{
+			"name": "List Students",
+			"request": {
+				"method": "GET",
+				"url": "{{baseUrl}}/api/students"
+			}
+		},
+		{
+			"name": "Get Student",
+			"request": {
+				"method": "GET",
+				"url": "{{baseUrl}}/api/students/{{studentId}}"
+			}
+		},
+		{
+			"name": "Update Student",
+			"request": {
+				"method": "PUT",
+				"header": [{ "key": "Content-Type", "value": "application/json" }],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"firstName\": \"Augusta\",\n  \"lastName\": \"Lovelace\",\n  \"email\": \"augusta@example.com\"\n}",
+					"options": { "raw": { "language": "json" } }
+				},
+				"url": "{{baseUrl}}/api/students/{{studentId}}"
+			}
+		},
+		{
+			"name": "Delete Student",
+			"request": {
+				"method": "DELETE",
+				"url": "{{baseUrl}}/api/students/{{studentId}}"
+			}
+		},
+		{
+			"name": "Not Found Example",
+			"request": {
+				"method": "GET",
+				"url": "{{baseUrl}}/api/students/999999999"
+			}
+		}
+	]
+}
