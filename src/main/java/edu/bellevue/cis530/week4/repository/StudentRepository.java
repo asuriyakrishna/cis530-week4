@@ -1,7 +1,6 @@
 package edu.bellevue.cis530.week4.repository;
 
 import edu.bellevue.cis530.week4.entity.Student;
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,9 +18,9 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 
 	List<Student> findByMajorIgnoreCase(String major);
 
-	List<Student> findByGpaGreaterThanEqual(BigDecimal minimumGpa);
+	List<Student> findByGpaGreaterThanEqual(Double minimumGpa);
 
-	List<Student> findByGpaGreaterThan(BigDecimal gpa);
+	List<Student> findByGpaGreaterThan(Double gpa);
 
 	List<Student> findByEnrollmentYear(Integer enrollmentYear);
 

@@ -34,7 +34,7 @@
 				"header": [{ "key": "Content-Type", "value": "application/json" }],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"firstName\": \"Ada\",\n  \"lastName\": \"Lovelace\",\n  \"email\": \"ada.{{$timestamp}}@example.com\"\n}",
+					"raw": "{\n  \"firstName\": \"Ada\",\n  \"lastName\": \"Lovelace\",\n  \"email\": \"ada.{{$timestamp}}@example.com\",\n  \"major\": \"Computer Science\",\n  \"gpa\": 3.95,\n  \"enrollmentYear\": 2024\n}",
 					"options": { "raw": { "language": "json" } }
 				},
 				"url": "{{baseUrl}}/api/students",
@@ -56,13 +56,55 @@
 			}
 		},
 		{
+			"name": "Find by Major",
+			"request": {
+				"method": "GET",
+				"url": "{{baseUrl}}/api/students/major/Computer%20Science"
+			}
+		},
+		{
+			"name": "Find by GPA",
+			"request": {
+				"method": "GET",
+				"url": "{{baseUrl}}/api/students/gpa/3.5"
+			}
+		},
+		{
+			"name": "Find by Enrollment Year",
+			"request": {
+				"method": "GET",
+				"url": "{{baseUrl}}/api/students/year/2022"
+			}
+		},
+		{
+			"name": "Top 3 by GPA",
+			"request": {
+				"method": "GET",
+				"url": "{{baseUrl}}/api/students/top3"
+			}
+		},
+		{
+			"name": "Sort by Last Name",
+			"request": {
+				"method": "GET",
+				"url": "{{baseUrl}}/api/students/sort?direction=asc"
+			}
+		},
+		{
+			"name": "Page Students",
+			"request": {
+				"method": "GET",
+				"url": "{{baseUrl}}/api/students/page?page=0&size=5"
+			}
+		},
+		{
 			"name": "Update Student",
 			"request": {
 				"method": "PUT",
 				"header": [{ "key": "Content-Type", "value": "application/json" }],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"firstName\": \"Augusta\",\n  \"lastName\": \"Lovelace\",\n  \"email\": \"augusta@example.com\"\n}",
+					"raw": "{\n  \"firstName\": \"Augusta\",\n  \"lastName\": \"Lovelace\",\n  \"email\": \"augusta@example.com\",\n  \"major\": \"Mathematics\",\n  \"gpa\": 3.99,\n  \"enrollmentYear\": 2025\n}",
 					"options": { "raw": { "language": "json" } }
 				},
 				"url": "{{baseUrl}}/api/students/{{studentId}}"
@@ -80,6 +122,20 @@
 			"request": {
 				"method": "GET",
 				"url": "{{baseUrl}}/api/students/999999999"
+			}
+		},
+		{
+			"name": "Find by Major (JPQL)",
+			"request": {
+				"method": "GET",
+				"url": "{{baseUrl}}/api/students/major-jpql/Computer%20Science"
+			}
+		},
+		{
+			"name": "Delete by Enrollment Year (JPQL)",
+			"request": {
+				"method": "DELETE",
+				"url": "{{baseUrl}}/api/students/year/2024/jpql"
 			}
 		}
 	]

@@ -33,8 +33,8 @@ public class StudentController {
 		return studentService.getAllStudents();
 	}
 
-	@GetMapping("/by-major")
-	public List<Student> getByMajor(@RequestParam String major) {
+	@GetMapping("/major/{major}")
+	public List<Student> getByMajor(@PathVariable String major) {
 		return studentService.getByMajor(major);
 	}
 
@@ -49,22 +49,22 @@ public class StudentController {
 		return ResponseEntity.ok(Map.of("year", year, "deletedCount", deletedCount));
 	}
 
-	@GetMapping("/by-gpa")
-	public List<Student> getByGpaGreaterThan(@RequestParam Double gpa) {
+	@GetMapping("/gpa/{gpa}")
+	public List<Student> getByGpaGreaterThan(@PathVariable Double gpa) {
 		return studentService.getByGpaGreaterThan(gpa);
 	}
 
-	@GetMapping("/by-enrollment-year")
-	public List<Student> getByEnrollmentYearGreaterThan(@RequestParam Integer year) {
+	@GetMapping("/year/{year}")
+	public List<Student> getByEnrollmentYearGreaterThan(@PathVariable Integer year) {
 		return studentService.getByEnrollmentYearGreaterThan(year);
 	}
 
-	@GetMapping("/top-gpa")
+	@GetMapping("/top3")
 	public List<Student> getTop3ByGpa() {
 		return studentService.getTop3ByGpa();
 	}
 
-	@GetMapping("/sorted")
+	@GetMapping("/sort")
 	public List<Student> getAllSortedByLastName(@RequestParam(defaultValue = "ASC") String direction) {
 		return studentService.getAllSortedByLastName(direction);
 	}

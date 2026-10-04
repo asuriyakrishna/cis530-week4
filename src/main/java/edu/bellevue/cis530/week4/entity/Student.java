@@ -6,10 +6,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import java.math.BigDecimal;
 
 @Entity
 @Table(name = "students")
@@ -34,12 +34,17 @@ public class Student {
 	@Column(nullable = false, unique = true, length = 254)
 	private String email;
 
-	@Column(length = 120)
+	@NotBlank
+	@Size(max = 120)
+	@Column(nullable = false, length = 120)
 	private String major;
 
-	@Column(precision = 3, scale = 2)
-	private BigDecimal gpa;
+	@NotNull
+	@Column(nullable = false)
+	private Double gpa;
 
+	@NotNull
+	@Column(nullable = false)
 	private Integer enrollmentYear;
 
 	public Student() {
@@ -51,7 +56,7 @@ public class Student {
 		this.email = email;
 	}
 
-	public Student(String firstName, String lastName, String email, String major, BigDecimal gpa,
+	public Student(String firstName, String lastName, String email, String major, Double gpa,
 			Integer enrollmentYear) {
 		this(firstName, lastName, email);
 		this.major = major;
@@ -99,11 +104,11 @@ public class Student {
 		this.major = major;
 	}
 
-	public BigDecimal getGpa() {
+	public Double getGpa() {
 		return gpa;
 	}
 
-	public void setGpa(BigDecimal gpa) {
+	public void setGpa(Double gpa) {
 		this.gpa = gpa;
 	}
 

@@ -4,7 +4,6 @@ import edu.bellevue.cis530.week4.entity.Student;
 import edu.bellevue.cis530.week4.exception.ResourceNotFoundException;
 import edu.bellevue.cis530.week4.repository.StudentRepository;
 import edu.bellevue.cis530.week4.service.StudentService;
-import java.math.BigDecimal;
 import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -78,7 +77,7 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<Student> getByGpaGreaterThan(Double gpa) {
-		return studentRepository.findByGpaGreaterThan(BigDecimal.valueOf(gpa));
+		return studentRepository.findByGpaGreaterThan(gpa);
 	}
 
 	@Override
